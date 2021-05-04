@@ -2,6 +2,15 @@ var workspace = Blockly.inject(
 	'blocklyDiv', 
 	{
 		toolbox: Control.prototype.createToolBox(),
+		zoom: {
+			controls: true,
+			wheel: true,
+			startScale: 1.0,
+			maxScale: 3,
+			minScale: 0.3,
+			scaleSpeed: 1.2,
+			pinch: true
+		},
 		grid: {
 			spacing: 20,
 			length: 3,
@@ -45,8 +54,8 @@ function createNavigate() {
 	var nex = document.getElementById('nextLink');
 	var linkText;
 	if (Map.prototype.links.previous != "") {
-		pre.setAttribute('href', '../' + Map.prototype.links.previous);
-		linkText = Map.prototype.links.previous;
+		pre.setAttribute('href', '../' + Map.prototype.links.previous.toLowerCase() + '/');
+		linkText = Map.prototype.links.previous.toUpperCase();
 	}
 	else {
 		pre.removeAttribute('href');
@@ -57,8 +66,8 @@ function createNavigate() {
 	}
 	pre.appendChild(document.createTextNode(linkText));
 	if (Map.prototype.links.next != "") {
-		nex.setAttribute('href', '../' + Map.prototype.links.next);
-		linkText = Map.prototype.links.next;
+		nex.setAttribute('href', '../' + Map.prototype.links.next.toLowerCase() + '/');
+		linkText = Map.prototype.links.next.toUpperCase();
 	}
 	else {
 		nex.removeAttribute('href');

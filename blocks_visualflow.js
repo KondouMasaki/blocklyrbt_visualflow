@@ -404,7 +404,8 @@ Blockly.Blocks['write_cell_value'] = {
 };
 Blockly.Blocks['values_compare'] = {
 	init: function() {
-		this.appendValueInput("value1").setCheck("Number");
+		this.appendValueInput("value1").setCheck("Number")
+			.appendField("じょうけん");
 		this.appendValueInput("value2").setCheck("Number")
 			.appendField("は");
 		this.appendDummyInput()

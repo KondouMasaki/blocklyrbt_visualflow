@@ -104,5 +104,5 @@ Map.prototype.beforeStart = function() {
 /**
  * ターンごとに発生する処理
  */
-Map.prototype.afterMoved = function(t) {
+Map.prototype.afterMoved = function(t, pos) {
 };

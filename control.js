@@ -331,7 +331,7 @@ Control.prototype.oneTurn = function(cmd, arg1, arg2, arg3) {
 	}
 	Control.prototype.time++;
 	
-	Map.prototype.afterMoved(Control.prototype.time);
+	Map.prototype.afterMoved(Control.prototype.time, Control.prototype.storePosDir());
 	
 	if (Control.prototype.isGoal()) {
 		Control.prototype.goalNum--;
