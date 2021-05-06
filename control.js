@@ -659,14 +659,14 @@ Control.prototype.getRegister = function(reg) {
 Control.prototype.addRegister = function(reg, value) {
 	if (reg >= 0 && reg <= 7) {
 		var v = Robot.prototype.registers[Robot.prototype.getRegisterName(reg)];
-		Robot.prototype.registers[Robot.prototype.getRegisterName(reg)] = (v + value) % 65535;
+		Robot.prototype.registers[Robot.prototype.getRegisterName(reg)] = (v + value) % 65536;
 	}
 	return true;
 };
 Control.prototype.subRegister = function(reg, value) {
 	if (reg >= 0 && reg <= 7) {
 		var v = Robot.prototype.registers[Robot.prototype.getRegisterName(reg)];
-		Robot.prototype.registers[Robot.prototype.getRegisterName(reg)] = (v - value + 65535) % 65535;
+		Robot.prototype.registers[Robot.prototype.getRegisterName(reg)] = (v - value + 65535) % 65536;
 	}
 	return true;
 };

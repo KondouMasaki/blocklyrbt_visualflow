@@ -379,7 +379,7 @@ Blockly.Blocks['read_cell_value_index'] = {
 	init: function() {
 		this.appendDummyInput().appendField("数字をレジスターの");
 		this.appendValueInput("register_index").setCheck("Number");
-		this.appendDummyInput().appendField("番に入れる");
+		this.appendDummyInput().appendField("番目に入れる");
 		this.setInputsInline(true);
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
