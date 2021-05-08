@@ -1,4 +1,15 @@
 /**
+ * 定数
+ */
+Map.prototype.colorValue = {
+	"white": 0,
+	"black": 1,
+	"red": 2,
+	"blue": 3,
+	"green": 4,
+	"yellow": 5
+};
+/**
  * マップをバックアップする
  */
 Map.prototype.backupMap = function() {
