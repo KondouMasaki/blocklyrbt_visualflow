@@ -189,7 +189,7 @@ Control.prototype.initGame = function() {
 		for (var i = 0; i < Map.prototype.patterns; i++) {
 			var op = document.createElement('option');
 			op.appendChild(document.createTextNode('パターン '+(i+1)));
-			op.setAttribute('value', (i+1));
+			op.setAttribute('value', i);
 			frg.appendChild(op);
 		}
 		Control.prototype.patternSelector.appendChild(frg);
