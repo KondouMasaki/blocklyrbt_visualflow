@@ -7,7 +7,7 @@ Map.prototype = {
 		[ 1, 1, 1, 1, 1, 0, 0, 0, 0, 5, 1, 1 ],
 		[ 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1 ],
 		[ 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1 ],
-		[ 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1 ],
+		[ 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 1 ],
 		[ 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1 ],
 		[ 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1 ],
 		[ 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1 ],
@@ -24,6 +24,7 @@ Map.prototype = {
 	"hint": "Enjoy BlocklyRbt Visal Flow !! ブロックリーロボット問題 ビジュアルフローを楽しんでね!!",
 	"state": 0,
 	"goals": 1,
+	"patterns": 1,
 	"links": {
 		"question": "Q0-0",
 		"previous": "",
@@ -99,10 +100,12 @@ Map.prototype = {
 /**
  * コード実行前の処理
  */
-Map.prototype.beforeStart = function() {
+Map.prototype.beforeStart = function(pattern) {
+	// if pettern is <empty string> selected "どれか"
 };
 /**
  * ターンごとに発生する処理
  */
 Map.prototype.afterMoved = function(t, pos) {
+	// t is turns value, pos is robot info { "x": num, "y": num, "direction": num }
 };
