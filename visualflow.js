@@ -18,9 +18,12 @@ var workspace = Blockly.inject(
 			snap: true,
 		},
 		scrollbars: true,
-		trashcan: true
+		trashcan: true,
+		maxBlocks: Control.prototype.getMaxBlocks()
 	}
 );
+
+workspace.addChangeListener(updateCapacity);
 
 var runButton = document.getElementById('runButton');
 var stopButton = document.getElementById('stopButton');
@@ -44,6 +47,8 @@ workspace.addChangeListener(function(event) {
 createNavigate();
 
 Control.prototype.initGame();
+updateCapacity();
+
 runButton.addEventListener("click", runCode, false);
 stopButton.addEventListener("click", forceStop, false);
 stopButton.disabled = true;
@@ -168,6 +173,7 @@ function stopStep() {
 		
 		Control.prototype.balloon.setAttribute('class', '');
 		Control.prototype.showPatternSelector();
+		Control.prototype.showLeftBlocks();
 	}, 1000);
 }
 
@@ -187,6 +193,7 @@ function runCode() {
 		Control.prototype.balloon.setAttribute('class', 'hide');
 		
 		Control.prototype.patternSelector.setAttribute('class', 'hide');
+		Control.prototype.leftBlocksDiv.setAttribute('class', 'hide');
 		
 		resetStepUi(true);
 		myInterpreter = new Interpreter(latestCode, initApi);
@@ -236,4 +243,8 @@ function ControlOneTurn(cmd, arg1, arg2, arg3) {
 
 function forceStop() {
 	stopStep();
+}
+
+function updateCapacity() {
+	Control.prototype.leftBlocks.textContent = workspace.remainingCapacity();
 }

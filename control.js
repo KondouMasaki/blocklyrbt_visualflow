@@ -7,7 +7,9 @@ Control.prototype = {
 	"time": 0,
 	"balloon": null,
 	"registers": null,
-	"patternSelector": null
+	"patternSelector": null,
+	"leftBlocks": null,
+	"leftBlocksDiv": null
 };
 
 /**
@@ -172,6 +174,13 @@ Control.prototype.createToolBox = function() {
 };
 
 /**
+ * ブロック数の制限を取得
+ */
+Control.prototype.getMaxBlocks = function() {
+	return (Map.prototype.blocksLimit >= 1) ? Map.prototype.blocksLimit : Infinity;
+};
+
+/**
  * ゲーム開始時の処理
  */
 Control.prototype.initGame = function() {
@@ -197,6 +206,13 @@ Control.prototype.initGame = function() {
 	else {
 		Control.prototype.patternSelector.setAttribute('class', 'hide');
 	}
+	
+	Control.prototype.leftBlocks = document.getElementById('capacity');
+	if (Map.prototype.blocksLimit <= 0) {
+		document.getElementById('leftBlocks').setAttribute('class', 'hide');
+	}
+	
+	Control.prototype.leftBlocksDiv = document.getElementById('leftBlocks');
 
 	Control.prototype.beforeRun();
 };
@@ -237,6 +253,15 @@ Control.prototype.initRobot = function() {
 Control.prototype.showPatternSelector = function() {
 	if ((Map.prototype.patterns > 1) && (Map.prototype.patterns <= 16)) {
 		Control.prototype.patternSelector.setAttribute('class', '');
+	}
+};
+
+/**
+ * のこりブロックを表示
+ */
+Control.prototype.showLeftBlocks = function() {
+	if (Map.prototype.blocksLimit >= 1) {
+		Control.prototype.leftBlocksDiv.setAttribute('class', '');
 	}
 };
 

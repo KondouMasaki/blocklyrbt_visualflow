@@ -25,6 +25,7 @@ Map.prototype = {
 	"state": 0,
 	"goals": 1,
 	"patterns": 1,
+	"blocksLimit": 0,
 	"links": {
 		"question": "Q0-0",
 		"previous": "",

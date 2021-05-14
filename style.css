@@ -30,6 +30,17 @@ div.hide {
 div#map {
 }
 
+div#leftBlocks {
+	text-align: center;
+}
+
+div#leftBlocks > p {
+	margin: 4px 80px auto;
+	color: white;
+	background-color: #444444;
+	border-radius: 4px;
+}
+
 div#controlPanel {
 }
 
