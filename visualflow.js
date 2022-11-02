@@ -27,7 +27,12 @@ workspace.addChangeListener(updateCapacity);
 
 var runButton = document.getElementById('runButton');
 var stopButton = document.getElementById('stopButton');
+var resetButton = document.getElementById('resetButton');
+var hintButton = document.getElementById('hintButton');
+var xmlButton = document.getElementById('xmlButton');
+
 var robotSpeed = document.getElementById('robotSpeed');
+
 var myInterpreter = null;
 
 var highlightPause = false;
@@ -51,9 +56,25 @@ updateCapacity();
 
 runButton.addEventListener("click", runCode, false);
 stopButton.addEventListener("click", forceStop, false);
+resetButton.addEventListener("click", resetMap, false);
+hintButton.addEventListener("click", putHint, false);
+xmlButton.addEventListener("click", showXML, false);
 stopButton.disabled = true;
 stopButton.setAttribute('class', 'hide');
 Control.prototype.patternSelector.addEventListener("change", Control.prototype.beforeRun);
+
+// resize workspace
+var wsWidth = document.getElementById('workspaceColumn').parentNode.clientWidth - document.getElementById('mapColumn').clientWidth - 20;
+if (wsWidth > 550) {
+	document.getElementById('blocklyDiv').setAttribute('style', 'width: '+wsWidth+'px');
+	Blockly.svgResize(workspace);
+}
+
+// hide buttons
+xmlButton.setAttribute("style", "display: none");	// when develop, comment out here
+if (Map.prototype.hintBlocks.length == 0) {
+	hintButton.setAttribute("style", "display: none");
+}
 
 function createNavigate() {
 	var pre = document.getElementById('previousLink');
@@ -169,6 +190,10 @@ function stopStep() {
 		runButton.setAttribute('class', '');
 		stopButton.disabled = true;
 		stopButton.setAttribute('class', 'hide');
+		resetButton.disabled = false;
+		resetButton.setAttribute('class', '');
+		hintButton.disabled = false;
+		hintButton.setAttribute('class', '');
 		robotSpeed.setAttribute('class', '');
 		
 		Control.prototype.balloon.setAttribute('class', '');
@@ -188,6 +213,10 @@ function runCode() {
 		runButton.setAttribute('class', 'hide');
 		stopButton.disabled = false;
 		stopButton.setAttribute('class', '');
+		resetButton.disabled = true;
+		resetButton.setAttribute('class', 'hide');
+		hintButton.disabled = true;
+		hintButton.setAttribute('class', 'hide');
 		robotSpeed.setAttribute('class', 'hide');
 
 		Control.prototype.balloon.setAttribute('class', 'hide');
@@ -209,6 +238,12 @@ function runCode() {
 			case 2:
 				spd = 700;
 				break;
+			case 3:
+				spd = 400;
+				break;
+			case 4:
+				spd = 200;
+				break;
 			default:
 				break;
 		}
@@ -225,7 +260,10 @@ function ControlOneTurn(cmd, arg1, arg2, arg3) {
 		stopStep();
 		Control.prototype.patternSelector.children[Control.prototype.patternSelector.selectedIndex].setAttribute('class', 'pass');
 		setTimeout(function() {
-			alert("やったー！ゴールに着いたよ！");
+			Swal.fire({
+				title: "&#128522;",
+				text: "やったー！ゴールに着いたよ！",
+			});
 		}, 1000);
 		return ret;
 	}
@@ -233,7 +271,11 @@ function ControlOneTurn(cmd, arg1, arg2, arg3) {
 	if (Control.prototype.emptyLife) {
 		stopStep();
 		setTimeout(function() {
-			alert("命令が多くて、\nつかれちゃった……");
+			Swal.fire({
+				title: "&#128555;",
+				text: "命令が多くて、つかれちゃった……",
+				confirmButtonText: "もう一度",
+			});
 		}, 1000);
 		return ret;
 	}
@@ -245,6 +287,32 @@ function forceStop() {
 	stopStep();
 }
 
+function resetMap() {
+	Control.prototype.beforeRun();
+}
+
 function updateCapacity() {
 	Control.prototype.leftBlocks.textContent = workspace.remainingCapacity();
+}
+
+function putHint() {
+	var xml = Blockly.Xml.textToDom(Map.prototype.hintBlocks);
+	Blockly.Xml.domToWorkspace(xml, workspace);
+}
+
+function showXML() {
+	var xml = Blockly.Xml.workspaceToDom(workspace);
+	var myBlockXml = Blockly.Xml.domToText(xml);
+	
+	// remove id attr
+	var txt = "";
+	while(myBlockXml.indexOf(" id=\"") >= 0) {
+		var idx = myBlockXml.indexOf(" id=\"");
+		txt += myBlockXml.substring(0, idx);
+		myBlockXml = myBlockXml.substring(idx + 5);
+		myBlockXml = myBlockXml.substring(myBlockXml.indexOf("\"") + 1);
+	}
+	txt += myBlockXml;
+	
+	console.log(txt);
 }

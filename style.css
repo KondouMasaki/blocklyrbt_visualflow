@@ -53,11 +53,13 @@ div.clear {
 	clear: both;
 }
 
-div#controlPanel > p {
+div#controlPanel > p,
+div#controlPanel2 > p {
 	text-align: center;
 }
 
-div#controlPanel button {
+div#controlPanel button,
+div#controlPanel2 button {
 	padding: 6px 10px;
 }
 
