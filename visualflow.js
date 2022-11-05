@@ -298,6 +298,10 @@ function updateCapacity() {
 function putHint() {
 	var xml = Blockly.Xml.textToDom(Map.prototype.hintBlocks);
 	Blockly.Xml.domToWorkspace(xml, workspace);
+	Swal.fire({
+		title: "&#129300;",
+		text: "ヒントの命令をおいたよ",
+	});
 }
 
 function showXML() {
