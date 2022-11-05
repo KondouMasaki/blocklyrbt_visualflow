@@ -317,7 +317,7 @@ Control.prototype.getTextBox = function(pos) {
  */
 Control.prototype.drawRobot = function() {
 	var cell = Control.prototype.getCell(Robot.prototype.position);
-	cell.getElementsByTagName('img')[0].setAttribute('src', 'img/'+Robot.prototype.getImage());
+	cell.getElementsByTagName('img')[0].setAttribute('src', Map.prototype.image_file_dir+Robot.prototype.getImage());
 };
 
 /**
@@ -325,7 +325,7 @@ Control.prototype.drawRobot = function() {
  */
 Control.prototype.drawGhost = function(pos, dir) {
 	var cell = Control.prototype.getCell(pos);
-	cell.getElementsByTagName('img')[0].setAttribute('src', 'img/'+Robot.prototype.getGhost(dir));
+	cell.getElementsByTagName('img')[0].setAttribute('src', Map.prototype.image_file_dir+Robot.prototype.getGhost(dir));
 };
 
 /**

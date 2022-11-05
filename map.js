@@ -96,7 +96,9 @@ Map.prototype = {
 	],
 	"hintBlocks": '<xml xmlns="https://developers.google.com/blockly/xml"><block type="forward" x="-150" y="-30"><next><block type="turn_right"><next><block type="nop"><next><block type="turn_left"></block></next></block></next></block></next></block></xml>',
 	"map2": [],
-	"chars2": []
+	"chars2": [],
+	
+	"image_file_dir": 'img/'
 };
 
 /**

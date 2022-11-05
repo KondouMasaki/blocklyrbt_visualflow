@@ -97,7 +97,7 @@ Map.prototype.createTableMap = function() {
 			var div = document.createElement('div');
 			
 			var img = document.createElement('img');
-			img.setAttribute('src', 'img/none.png');
+			img.setAttribute('src', Map.prototype.image_file_dir+'none.png');
 			div.appendChild(img);
 			
 			var input = document.createElement('input');
