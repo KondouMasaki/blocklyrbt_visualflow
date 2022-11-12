@@ -71,7 +71,7 @@ if (wsWidth > 550) {
 }
 
 // hide buttons
-xmlButton.setAttribute("style", "display: none");	// when develop, comment out here
+//xmlButton.setAttribute("style", "display: none");	// when develop, comment out here
 if (Map.prototype.hintBlocks.length == 0) {
 	hintButton.setAttribute("style", "display: none");
 }
@@ -318,5 +318,11 @@ function showXML() {
 	}
 	txt += myBlockXml;
 	
-	console.log(txt);
+	// position fix
+	var idx = txt.indexOf("x=\"");
+	var newTxt = txt.substring(0, idx) + "x=\"10\" y=\"10\">";
+	txt = txt.substring(txt.indexOf("y=\"") + 3);
+	newTxt += txt.substring(txt.indexOf("<"));
+	
+	console.log(newTxt);
 }
