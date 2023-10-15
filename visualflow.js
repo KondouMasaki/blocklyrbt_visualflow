@@ -76,6 +76,14 @@ if (Map.prototype.hintBlocks.length == 0) {
 	hintButton.setAttribute("style", "display: none");
 }
 
+// set default speed
+if (Map.prototype.start.hasOwnProperty('speed')) {
+	var spd = Map.prototype.start.speed;
+	if (spd >= 0 && spd <= 4) {
+		robotSpeed.options[Map.prototype.start.speed].selected = true;
+	}
+}
+
 function createNavigate() {
 	var pre = document.getElementById('previousLink');
 	var nex = document.getElementById('nextLink');
