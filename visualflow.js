@@ -38,6 +38,9 @@ var myInterpreter = null;
 var highlightPause = false;
 var latestCode = '';
 
+var selectedPattern = "";
+var currentPattern = 1;
+
 var timeoutId = null;
 
 // Load the interpreter now, and upon future changes.
@@ -211,6 +214,41 @@ function stopStep() {
 }
 
 function runCode() {
+	selectedPattern = Control.prototype.patternSelector.value;
+	if (Map.prototype.patterns > 1) {
+		if (selectedPattern == "") {
+			currentPattern = 1;
+			Control.prototype.patternSelector.options[1].selected = true;
+		}
+		else {
+			currentPattern = selectedPattern;
+		}
+	}
+	else {
+		currentPattern = 0;
+	}
+	
+	runCodeBody();
+}
+
+function runNextPattern() {
+	if ((Map.prototype.patterns > 1) && (selectedPattern == "")) {
+		if (currentPattern < Map.prototype.patterns) {
+			currentPattern++;
+			Control.prototype.patternSelector.options[currentPattern].selected = true;
+			runCodeBody();
+		}
+		else {
+			Swal.fire({
+				title: "&#" + getClearFace() + ";",
+				text: "全てのパータンでゴールしたよ！",
+				confirmButtonText: "OK"
+			});
+		}
+	}
+}
+
+function runCodeBody() {
 	Control.prototype.beforeRun();
 	
 	if (!myInterpreter) {
@@ -271,7 +309,10 @@ function ControlOneTurn(cmd, arg1, arg2, arg3) {
 			Swal.fire({
 				title: "&#" + getClearFace() + ";",
 				text: getClearText(),
-			});
+				confirmButtonText: "OK"
+			}).then((result) => {
+				runNextPattern();
+			});;
 		}, 1000);
 		return ret;
 	}
@@ -282,7 +323,7 @@ function ControlOneTurn(cmd, arg1, arg2, arg3) {
 			Swal.fire({
 				title: "&#" + getTiredFace() + ";",
 				text: "命令が多くて、つかれちゃった……",
-				confirmButtonText: "もう一度",
+				confirmButtonText: "もう一度"
 			});
 		}, 1000);
 		return ret;

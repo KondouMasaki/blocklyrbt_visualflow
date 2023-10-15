@@ -107,6 +107,16 @@ Map.prototype = {
  */
 Map.prototype.beforeStart = function(pattern) {
 	// if pettern is <empty string> selected "どれか"
+	var p = parseInt(pattern);
+	switch(p) {
+		case 0:
+		case 1:
+		case 2:
+			Map.prototype.map[0][0] = p + 2;
+			break;
+		default:
+			break;
+	}
 };
 /**
  * ターンごとに発生する処理
