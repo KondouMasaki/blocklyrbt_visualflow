@@ -114,6 +114,7 @@ Map.prototype.beforeStart = function(pattern) {
 		case 2:
 			Map.prototype.map[0][0] = p + 2;
 			break;
+			
 		default:
 			break;
 	}
