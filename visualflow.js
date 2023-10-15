@@ -261,8 +261,8 @@ function ControlOneTurn(cmd, arg1, arg2, arg3) {
 		Control.prototype.patternSelector.children[Control.prototype.patternSelector.selectedIndex].setAttribute('class', 'pass');
 		setTimeout(function() {
 			Swal.fire({
-				title: "&#128522;",
-				text: "やったー！ゴールに着いたよ！",
+				title: "&#" + getClearFace() + ";",
+				text: getClearText(),
 			});
 		}, 1000);
 		return ret;
@@ -272,7 +272,7 @@ function ControlOneTurn(cmd, arg1, arg2, arg3) {
 		stopStep();
 		setTimeout(function() {
 			Swal.fire({
-				title: "&#128555;",
+				title: "&#" + getTiredFace() + ";",
 				text: "命令が多くて、つかれちゃった……",
 				confirmButtonText: "もう一度",
 			});
@@ -325,4 +325,95 @@ function showXML() {
 	newTxt += txt.substring(txt.indexOf("<"));
 	
 	console.log(newTxt);
+}
+
+function getClearFace() {
+	switch(Math.floor(Math.random() * 8)) {
+		case 0:
+			return "128513";
+		case 1:
+			return "128515";
+		case 2:
+			return "128516";
+		case 3:
+			return "128518";
+		case 4:
+			return "128521";
+		case 5:
+			return "128522";
+		case 6:
+			return "129303";
+		case 7:
+			return "128077";
+	}
+}
+
+function getClearText() {
+	var txt = "";
+	switch(Math.floor(Math.random() * 5)) {
+		case 0:
+			txt += "やったー！";
+			break;
+		case 1:
+			txt += "わーい！";
+			break;
+		case 2:
+			txt += "やった！！";
+			break;
+		case 3:
+			txt += "いえーい！";
+			break;
+		case 4:
+			txt += "ありがとう！";
+	}
+	if (Math.floor(Math.random() * 2) == 0) {
+		txt += "ゴール";
+		switch(Math.floor(Math.random() * 2)) {
+			case 0:
+				txt += "したよ！";
+				break;
+			case 1:
+				txt += "できたよ！";
+				break;
+		}
+	}
+	else {
+		txt += "ゴールに";
+		switch(Math.floor(Math.random() * 5)) {
+			case 0:
+				txt += "着いたよ！";
+				break;
+			case 1:
+				txt += "着けたよ！";
+				break;
+			case 2:
+				txt += "来たよ！";
+				break;
+			case 3:
+				txt += "来れたよ！";
+				break;
+			case 4:
+				txt += "行けたよ！";
+				break;
+		}
+	}
+	
+	return txt;
+}
+
+function getTiredFace() {
+	switch(Math.floor(Math.random() * 6)) {
+		case 0:
+			return "128549";
+		case 1:
+			return "128553";
+		case 2:
+			return "128555";
+		case 3:
+			return "128557";
+		case 4:
+			return "128560";
+		case 5:
+			return "128565";
+	}
 }
