@@ -484,12 +484,18 @@ function getAllPatternClearText() {
 			txt = "かんぺき！" + txt;
 			break;
 	}
-	switch(Math.floor(Math.random() * 2)) {
+	switch(Math.floor(Math.random() * 4)) {
 		case 0:
 			txt += "したよ！";
 			break;
 		case 1:
 			txt += "できたよ！";
+			break;
+		case 2:
+			txt += "に行けたよ！";
+			break;
+		case 3:
+			txt += "に着けたよ！";
 			break;
 	}
 	return txt;
