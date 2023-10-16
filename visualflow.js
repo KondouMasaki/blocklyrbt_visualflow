@@ -239,6 +239,7 @@ function runNextPattern() {
 			runCodeBody();
 		}
 		else {
+			Control.prototype.patternSelector.options[0].selected = true;
 			Swal.fire({
 				title: getHappyIcons(),
 				text: getAllPatternClearText(),
