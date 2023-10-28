@@ -323,7 +323,7 @@ function ControlOneTurn(cmd, arg1, arg2, arg3) {
 		setTimeout(function() {
 			Swal.fire({
 				title: "&#" + getTiredFace() + ";",
-				text: "命令が多くて、つかれちゃった……",
+				text: (Map.prototype.start.soft ? "イテテ、かべにぶつかっちゃった……" : "命令が多くて、つかれちゃった……"),
 				confirmButtonText: "もう一度"
 			});
 		}, 1000);

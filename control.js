@@ -623,6 +623,11 @@ Control.prototype.forward = function() {
 		po.x = f.x;
 		po.y = f.y;
 	}
+	else {
+		if (Map.prototype.start.soft == true) {
+			Robot.prototype.life = 1;	// no life
+		}
+	}
 	
 	Map.prototype.chars[po.y][po.x] = -1;
 	

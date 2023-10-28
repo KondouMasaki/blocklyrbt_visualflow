@@ -20,12 +20,13 @@ Map.prototype = {
 		"y": 7,
 		"direction": 0,
 		"life": 65534,
-		"speed": 1
+		"speed": 1,
+		"soft": false
 	},
 	"hint": "Enjoy BlocklyRbt Visal Flow !! ブロックリーロボット問題 ビジュアルフローを楽しんでね!!",
 	"state": 0,
 	"goals": 1,
-	"patterns": 3,
+	"patterns": 2,
 	"blocksLimit": 0,
 	"links": {
 		"question": "Q0-0",
