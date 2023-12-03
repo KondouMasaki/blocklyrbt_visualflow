@@ -1,6 +1,8 @@
 var Map = function() {
 };
-Map.prototype = {
+Map.prototype = 
+// %%=start
+{
 	"map": [
 		[ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
 		[ 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 1 ],
@@ -101,7 +103,9 @@ Map.prototype = {
 	"chars2": [],
 	
 	"image_file_dir": 'img/'
-};
+}
+// end=%%
+;
 
 /**
  * コード実行前の処理
