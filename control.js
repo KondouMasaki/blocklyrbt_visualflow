@@ -3,6 +3,7 @@ var Control = function() {
 Control.prototype = {
 	"goal": false,
 	"emptyLife": false,
+	"broken": false,
 	"goalNum": 1,
 	"time": 0,
 	"balloon": null,
@@ -205,6 +206,7 @@ Control.prototype.initGame = function() {
 	}
 	else {
 		Control.prototype.patternSelector.setAttribute('class', 'hide');
+		document.getElementById('patternLabel').setAttribute('style', 'color: transparent');
 	}
 	
 	Control.prototype.leftBlocks = document.getElementById('capacity');
@@ -226,12 +228,13 @@ Control.prototype.beforeRun = function() {
 	Map.prototype.restoreChars();
 	Map.prototype.beforeStart(Control.prototype.patternSelector.value);
 	
-	Control.prototype.drawMap();
-	Control.prototype.drawRobot();
 	Control.prototype.goal = false;
 	Control.prototype.emptyLife = false;
+	Control.prototype.broken = false;
 	Control.prototype.goalNum = Map.prototype.goals;
 	Control.prototype.time = 0;
+	Control.prototype.drawMap();
+	Control.prototype.drawRobot();
 };
 
 /**
@@ -317,7 +320,12 @@ Control.prototype.getTextBox = function(pos) {
  */
 Control.prototype.drawRobot = function() {
 	var cell = Control.prototype.getCell(Robot.prototype.position);
-	cell.getElementsByTagName('img')[0].setAttribute('src', Map.prototype.image_file_dir+Robot.prototype.getImage());
+	if (!Control.prototype.broken) {
+		cell.getElementsByTagName('img')[0].setAttribute('src', Map.prototype.image_file_dir+Robot.prototype.getImage());
+	}
+	else {
+		cell.getElementsByTagName('img')[0].setAttribute('src', Map.prototype.image_file_dir+'broken.png');
+	}
 };
 
 /**
@@ -386,7 +394,9 @@ Control.prototype.oneTurn = function(cmd, arg1, arg2, arg3) {
 		}
 	}
 	
-	Control.prototype.drawCells(Map.prototype.compareMap(oldMap, oldChars));
+	if (!Control.prototype.emptyLife) {
+		Control.prototype.drawCells(Map.prototype.compareMap(oldMap, oldChars));
+	}
 	
 	return ret;
 };
@@ -499,8 +509,11 @@ Control.prototype.execute = function(cmd, arg1, arg2, arg3) {
 	else if (old.direction != cur.direction) {
 		Control.prototype.drawRobot();
 	}
+	else if (Control.prototype.broken) {
+		Control.prototype.drawRobot();
+	}
 	
-	var ptr = Control.prototype.registers.getElementsByTagName('table')[0].children[0].children[1];
+	var ptr = Control.prototype.registers.getElementsByTagName('table')[0].children[1].children[1];
 	for (var i = Robot.prototype.registers_index.length - 1; i >= 0; i--) {
 		for (var j = ptr.children[i].childNodes.length - 1; j >= 0; j--) {
 			ptr.children[i].removeChild(ptr.children[i].childNodes[j]);
@@ -626,6 +639,7 @@ Control.prototype.forward = function() {
 	else {
 		if (Map.prototype.start.soft == true) {
 			Robot.prototype.life = 1;	// no life
+			Control.prototype.broken = true;
 		}
 	}
 	

@@ -33,6 +33,10 @@ var xmlButton = document.getElementById('xmlButton');
 
 var robotSpeed = document.getElementById('robotSpeed');
 
+const resetLabel = document.getElementById('resetLabel');
+const speedLabel = document.getElementById('speedLabel');
+const patternLabel = document.getElementById('patternLabel');
+
 var myInterpreter = null;
 
 var highlightPause = false;
@@ -207,6 +211,10 @@ function stopStep() {
 		hintButton.setAttribute('class', '');
 		robotSpeed.setAttribute('class', '');
 		
+		resetLabel.setAttribute('class', 'super-small');
+		speedLabel.setAttribute('class', 'super-small');
+		patternLabel.setAttribute('class', 'super-small');
+		
 		Control.prototype.balloon.setAttribute('class', '');
 		Control.prototype.showPatternSelector();
 		Control.prototype.showLeftBlocks();
@@ -265,7 +273,11 @@ function runCodeBody() {
 		hintButton.disabled = true;
 		hintButton.setAttribute('class', 'hide');
 		robotSpeed.setAttribute('class', 'hide');
-
+		
+		resetLabel.setAttribute('class', 'super-small hide');
+		speedLabel.setAttribute('class', 'super-small hide');
+		patternLabel.setAttribute('class', 'super-small hide');
+		
 		Control.prototype.balloon.setAttribute('class', 'hide');
 		
 		Control.prototype.patternSelector.setAttribute('class', 'hide');
