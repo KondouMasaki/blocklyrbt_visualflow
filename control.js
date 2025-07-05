@@ -490,7 +490,9 @@ Control.prototype.setHintButtonVisible = function() {
  * ヒントボタンを表示
  */
 Control.prototype.showHintButton = function() {
-	Control.prototype.showButton(Control.prototype.hintButton);
+	if (Map.prototype.hintBlocks.length > 0) {
+		Control.prototype.showButton(Control.prototype.hintButton);
+	}
 };
 /**
  * ヒントボタンを非表示
