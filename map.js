@@ -27,9 +27,9 @@ Map.prototype =
 	},
 	"hint": "Enjoy BlocklyRbt Visal Flow !! ブロックリーロボット問題 ビジュアルフローを楽しんでね!!",
 	"state": 0,
-	"goals": 5,
+	"goals": 1,
 	"patterns": 2,
-	"blocksLimit": 0,
+	"blocksLimit": 10,
 	"links": {
 		"question": "Q0-0",
 		"previous": "",
@@ -111,13 +111,16 @@ Map.prototype =
  * コード実行前の処理
  */
 Map.prototype.beforeStart = function(pattern) {
-	// if pettern is <empty string> selected "どれか"
-	var p = parseInt(pattern);
-	switch(p) {
+	// if pettern is <empty string> selected "ぜんぶ"
+	if (pattern == "") {
+		pattern = 0;
+	}
+	
+	switch(parseInt(pattern)) {
 		case 0:
 		case 1:
 		case 2:
-			Map.prototype.map[0][0] = p + 2;
+			Map.prototype.map[0][0] = parseInt(pattern) + 2;
 			break;
 			
 		default:
