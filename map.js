@@ -7,7 +7,7 @@ Map.prototype =
 		[ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
 		[ 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 1 ],
 		[ 1, 1, 1, 1, 1, 0, 0, 0, 0, 5, 1, 1 ],
-		[ 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1 ],
+		[ 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1 ],
 		[ 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1 ],
 		[ 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1 ],
 		[ 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1 ],
@@ -25,16 +25,18 @@ Map.prototype =
 		"speed": 1,
 		"soft": false
 	},
-	"hint": "Enjoy BlocklyRbt Visal Flow !! ブロックリーロボット問題 ビジュアルフローを楽しんでね!!",
+	"hint": 'Enjoy BlocklyRbt Visal Flow !! ブロックリーロボット問題 ビジュアルフローを楽しんでね!!',
 	"state": 0,
 	"goals": 1,
 	"patterns": 2,
 	"blocksLimit": 10,
 	"links": {
-		"question": "Q0-0",
-		"previous": "",
-		"next": ""
+		"question": 'Q0-0',
+		"previous": '',
+		"next": ''
 	},
+	"useMapPreProcess": false,
+	"preProcessDescription": '',
 	"robot": {
 		"type": 6,
 		"Basic": {
@@ -101,11 +103,71 @@ Map.prototype =
 	"hintBlocks": '<xml xmlns="https://developers.google.com/blockly/xml"><block type="forward" x="-150" y="-30"><next><block type="turn_right"><next><block type="nop"><next><block type="turn_left"></block></next></block></next></block></next></block></xml>',
 	"map2": [],
 	"chars2": [],
+	"pmaps": [],	// [ <map>, ... ]
+	"pcords": [],	// [ { "y": num, "x": num, "v": str }, ... ]
 	
 	"image_file_dir": 'img/'
 }
 // end=%%
 ;
+
+/**
+ * マップに数字以外の場合を埋め込んだ場合のプリプロセス
+ */
+Map.prototype.mapPreProcess = function() {
+	// set map values to Map.prototype.pmaps[i], Map.prototype.pcords
+	/*
+	Map.prototype.pmaps = [];
+	const pmaps = Map.prototype.pmaps;
+	pmaps.push([]);
+	pmaps.push([]);
+	
+	Map.prototype.pcords = [];
+	const pcords = Map.prototype.pcords;
+	
+	function pushValue(row, x) {
+		pmaps[0][row].push(x);
+		pmaps[1][row].push(x);
+	}
+	
+	for (let i = 0; i < 12; i++) {
+		pmaps[0].push([]);
+		pmaps[1].push([]);
+		for (let j = 0; j < 12; j++) {
+			const v = Map.prototype.map[i][j];
+			if (isNaN(v)) {
+				switch(v.toLowerCase()) {
+					case "a":
+						pmaps[0][i].push(0);
+						pmaps[1][i].push(1);
+						pcords.push({"y": i, "x": j, "v": "a"});
+						break;
+					case "b":
+						pmaps[0][i].push(1);
+						pmaps[1][i].push(0);
+						pcords.push({"y": i, "x": j, "v": "b"});
+						break;
+					default:
+						pushValue(i, 0);
+						break;
+				}
+			}
+			else {
+				const n = parseInt(v);
+				if (n >= 0 && n <= 5) {
+					pushValue(i, n);
+				}
+				else {
+					pushValue(i, 0);
+				}
+			}
+		}
+	}
+	*/
+	//console.log(pmaps);
+	//console.log(Map.prototype.pmaps);
+	//console.log(Map.prototype.pcords);
+};
 
 /**
  * コード実行前の処理
